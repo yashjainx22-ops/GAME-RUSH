@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GameRush | Gaming Tournaments</title>
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;background:#090b12;color:white;
+ font-family:Arial,sans-serif
+}
+header{
+ padding:20px 6%;display:flex;
+ justify-content:space-between;align-items:center;
+ border-bottom:1px solid #252735
+}
+.logo{font-size:25px;font-weight:900;color:#ff713c}
+nav a{color:white;text-decoration:none;margin-left:15px}
+.hero{
+ padding:65px 7%;text-align:center;
+ background:radial-gradient(ellipse at top,#49204c,#090b12 70%)
+}
+.hero h1{font-size:43px;margin:10px}
+.hero span{color:#ff713c}
+.hero p{color:#b9bdca}
+.btn{
+ background:#ff713c;color:#111;
+ padding:13px 22px;border:0;border-radius:8px;
+ font-weight:bold;cursor:pointer
+}
+.section{padding:30px 6%}
+.section h2{font-size:25px}
+.filters{display:flex;gap:10px;flex-wrap:wrap}
+.filter{
+ background:#202333;color:white;
+ border:1px solid #373b4b;padding:10px 17px;
+ border-radius:20px;cursor:pointer
+}
+.filter.active{background:#ff713c;color:#111}
+.grid{
+ display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+ gap:18px;margin-top:22px
+}
+.card{
+ background:#171a27;border:1px solid #303345;
+ border-radius:13px;overflow:hidden
+}
+.cover{
+ height:125px;display:grid;place-items:center;
+ background:linear-gradient(135deg,#572b65,#171a27);
+ font-size:36px
+}
+.info{padding:17px}
+.tag{color:#ff966c;font-size:12px;font-weight:bold}
+.info h3{margin:10px 0}
+.info p{color:#b5bac8;font-size:14px}
+.info button{width:100%;margin-top:10px}
+.stats{
+ display:flex;justify-content:space-around;
+ background:#171a27;padding:25px 5%;
+ text-align:center;flex-wrap:wrap;gap:20px
+}
+.stats strong{font-size:25px;color:#ff713c}
+footer{text-align:center;padding:30px;color:#999}
+@media(max-width:500px){
+ .hero h1{font-size:34px}
+ nav a{font-size:12px;margin-left:7px}
+}
+</style>
+</head>
+<body>
+<header>
+ <div class="logo">⚡ GAMERUSH</div>
+ <nav>
+  <a href="#home">Home</a>
+  <a href="#tournaments">Games</a>
+ </nav>
+</header>
+
+<section class="hero" id="home">
+ <p>WELCOME TO THE BATTLEFIELD</p>
+ <h1>PLAY. COMPETE. <span>WIN.</span></h1>
+ <p>Your gaming journey starts here.</p>
+ <button class="btn" onclick="document.querySelector('#tournaments').scrollIntoView()">Explore Tournaments</button>
+</section>
+
+<section class="stats">
+ <div><strong>03</strong><br>Games</div>
+ <div><strong>24/7</strong><br>Gaming</div>
+ <div><strong>FREE</strong><br>Entry</div>
+</section>
+
+<section class="section" id="tournaments">
+ <h2>🔥 Available Tournaments</h2>
+ <div class="filters">
+  <button class="filter active" onclick="filterGames('all',this)">All</button>
+  <button class="filter" onclick="filterGames('freefire',this)">Free Fire</button>
+  <button class="filter" onclick="filterGames('bgmi',this)">BGMI</button>
+  <button class="filter" onclick="filterGames('other',this)">Other</button>
+ </div>
+ <div class="grid" id="games">
+  <div class="card" data-game="freefire">
+   <div class="cover">🔥</div>
+   <div class="info">
+    <span class="tag">FREE FIRE</span>
+    <h3>Battle Royale</h3>
+    <p>Entry: Free</p>
+    <p>Mode: Squad</p>
+    <button class="btn" onclick="join('Free Fire Battle Royale')">Join Tournament</button>
+   </div>
+  </div>
+  <div class="card" data-game="bgmi">
+   <div class="cover">🎯</div>
+   <div class="info">
+    <span class="tag">BGMI</span>
+    <h3>Classic Battle</h3>
+    <p>Entry: Free</p>
+    <p>Mode: Squad</p>
+    <button class="btn" onclick="join('BGMI Classic Battle')">Join Tournament</button>
+   </div>
+  </div>
+  <div class="card" data-game="other">
+   <div class="cover">🎮</div>
+   <div class="info">
+    <span class="tag">CUSTOM</span>
+    <h3>Gaming Challenge</h3>
+    <p>Entry: Free</p>
+    <p>Mode: Solo</p>
+    <button class="btn" onclick="join('Gaming Challenge')">Join Tournament</button>
+   </div>
+  </div>
+ </div>
+</section>
+
+<footer>
+ ⚡ GAMERUSH<br>
+ Play fair. Compete hard. Have fun.
+</footer>
+
+<script>
+function filterGames(game,button){
+ document.querySelectorAll('.filter').forEach(b=>b.classList.remove('active'));
+ button.classList.add('active');
+ document.querySelectorAll('.card').forEach(card=>{
+  card.style.display=(game==='all'||card.dataset.game===game)?'block':'none';
+ });
+}
+function join(name){
+ alert('You selected '+name+'. Player registration will be available soon!');
+}
+</script>
+</body>
+</html>
